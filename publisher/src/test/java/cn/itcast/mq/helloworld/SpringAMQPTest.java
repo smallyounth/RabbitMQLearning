@@ -18,4 +18,18 @@ public class SpringAMQPTest {
         String message = "hello, rabbitmq!";
         rabbitTemplate.convertAndSend(queueName, message);
     }
+
+    @Test
+    void fanoutExchangeTest() {
+        String exchangeName = "itcast.fanout";
+        String msg = "hello, consumers!";
+        rabbitTemplate.convertAndSend(exchangeName,"",msg);
+    }
+
+    @Test
+    void directExchangeTest() {
+        String exchangeName = "itcast.direct";
+        String msg = "hello, direct!";
+        rabbitTemplate.convertAndSend(exchangeName,"blue",msg);
+    }
 }
