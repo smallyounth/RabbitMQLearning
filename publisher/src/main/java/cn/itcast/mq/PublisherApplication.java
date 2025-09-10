@@ -12,7 +12,7 @@ public class PublisherApplication {
         SpringApplication.run(PublisherApplication.class);
     }
 
-    //消息发布者将各种消息对象序列化为json对象
+    //消息发布者将各种消息对象序列化为json字符串
     //注册消息转换器，将jdk默认的序列化方式改为json序列化方式
     @Bean
     public MessageConverter messageConverter(){

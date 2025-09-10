@@ -12,7 +12,7 @@ public class ConsumerApplication {
         SpringApplication.run(ConsumerApplication.class, args);
     }
 
-    //消息消费者将json对象反序列化为各种消息对象
+    //消息消费者将json字符串反序列化为各种消息对象
     //注册消息转换器，交给spring容器管理
     @Bean
     public MessageConverter messageConverter(){
