@@ -32,4 +32,11 @@ public class SpringAMQPTest {
         String msg = "hello, direct!";
         rabbitTemplate.convertAndSend(exchangeName,"blue",msg);
     }
+
+    @Test
+    void topicExchangeTest() {
+        String exchangeName = "itcast.topic";
+        String msg = "hello, topic!";
+        rabbitTemplate.convertAndSend(exchangeName,"china.msg",msg);
+    }
 }
