@@ -8,6 +8,8 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 //rabbitMQ消息监听类,启动时能不断自动监听响应队列的消息
 @Component
 public class RabbitMessageListen {
@@ -65,6 +67,12 @@ public class RabbitMessageListen {
     ))
     public void listenTopicQueue2(String msg){
         System.out.println("消费者接收到topic.queue2的消息：【" + msg + "】");
+    }
+
+    //注册消息转换器后spring会自动将消息反序列化为相应对象
+    @RabbitListener(queues = "object.queue")
+    public void listenObjectQueue(Map<String,String> msg){
+        System.out.println("消费者接收到object.queue的消息：【" + msg + "】");
     }
 
 }

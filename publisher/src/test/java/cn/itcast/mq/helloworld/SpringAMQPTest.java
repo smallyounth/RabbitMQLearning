@@ -5,6 +5,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @SpringBootTest
 public class SpringAMQPTest {
 
@@ -38,5 +41,16 @@ public class SpringAMQPTest {
         String exchangeName = "itcast.topic";
         String msg = "hello, topic!";
         rabbitTemplate.convertAndSend(exchangeName,"china.msg",msg);
+    }
+
+    //注册消息转换器后spring会自动将消息对象序列化json对象
+    @Test
+    public void testSendObject() {
+        // 1.发送消息
+        Map<String,String> msg = new HashMap<>();
+        String queueName = "object.queue";
+        String message = "hello, rabbitmq!";
+        msg.put(queueName,message);
+        rabbitTemplate.convertAndSend(queueName, msg);
     }
 }
